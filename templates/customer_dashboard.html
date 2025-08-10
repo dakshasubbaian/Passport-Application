@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: #333;
+    }
+    .dashboard-container {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 25px;
+      color: #4a148c;
+      font-weight: 700;
+    }
+    .btn {
+      background-color: #4a148c;
+      color: white;
+      border: none;
+      padding: 14px 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 12px 0;
+      width: 100%;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn:hover {
+      background-color: #6a22c8;
+    }
+    a.logout-link {
+      display: inline-block;
+      margin-top: 25px;
+      color: #764ba2;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+    a.logout-link:hover {
+      text-decoration: underline;
+      color: #4a148c;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <h2>Welcome, {{ username }}!</h2>
+
+    <a href="{{ url_for('check_status') }}" class="btn">Check Application Status</a>
+    <a href="{{ url_for('new_application') }}" class="btn">Apply for Passport</a>
+    <a href="{{ url_for('update_profile') }}" class="btn">Update Profile</a>
+    <a href="{{ url_for('change_password') }}" class="btn">Change Password</a>
+    <a href="{{ url_for('customer_logout') }}" class="logout-link">Logout</a>
+  </div>
+</body>
+</html>

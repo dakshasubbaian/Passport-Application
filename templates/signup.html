@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Customer Sign Up</title>
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 60px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    box-sizing: border-box;
+  }
+  .container {
+    background: white;
+    padding: 40px 50px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    width: 400px;
+    text-align: center;
+  }
+  h2 {
+    color: #4a148c;
+    font-weight: 700;
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    text-align: left;
+  }
+  input[type="text"],
+  input[type="password"] {
+    padding: 14px;
+    font-size: 16px;
+    border: 1.5px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    border-color: #6a22c8;
+  }
+  label {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #555;
+  }
+  button[type="submit"] {
+    padding: 14px;
+    font-size: 18px;
+    background-color: #4a148c;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  button[type="submit"]:hover {
+    background-color: #6a22c8;
+  }
+
+  .divider {
+    text-align: center;
+    margin: 25px 0;
+    font-size: 14px;
+    color: #888;
+    position: relative;
+  }
+  .divider::before,
+  .divider::after {
+    content: "";
+    height: 1px;
+    background: #ccc;
+    position: absolute;
+    top: 50%;
+    width: 40%;
+  }
+  .divider::before {
+    left: 0;
+  }
+  .divider::after {
+    right: 0;
+  }
+
+  .social-btn {
+    border: 1.5px solid #ccc;
+    border-radius: 10px;
+    padding: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #444;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    background: white;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+  .social-btn:hover {
+    background-color: #f0f0f0;
+    border-color: #6a22c8;
+    color: #6a22c8;
+  }
+
+  .microsoft-icon,
+  .facebook-icon,
+  .email-icon {
+    height: 30px;
+    width: 30px;
+  }
+
+  a.back-link {
+    display: block;
+    margin-top: 20px;
+    color: #764ba2;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  a.back-link:hover {
+    color: #4a148c;
+    text-decoration: underline;
+  }
+
+  ul.flash-messages {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 15px 0;
+    color: red;
+    text-align: left;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h2>Customer Sign Up</h2>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flash-messages">
+          {% for msg in messages %}
+            <li>{{ msg }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form method="post">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" placeholder="Enter username" required />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter password" required />
+
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <div class="divider">or sign up with</div>
+
+    <a href="/login/microsoft" class="social-btn" title="Sign up with Microsoft">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft icon" class="microsoft-icon" />
+      Continue with Microsoft
+    </a>
+
+    <a href="/login/facebook" class="social-btn" title="Sign up with Facebook">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" alt="Facebook icon" class="facebook-icon" />
+      Continue with Facebook
+    </a>
+
+    <a href="/login/email" class="social-btn" title="Sign up with Email">
+      <svg class="email-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12l-4-4-4 4m8 4l-4-4-4 4" />
+      </svg>
+      Continue with Email
+    </a>
+
+    <a href="{{ url_for('customer_login') }}" class="back-link">Already have an account? Log in here</a>
+    <a href="{{ url_for('home') }}" class="back-link">Back to Home</a>
+  </div>
+</body>
+</html>

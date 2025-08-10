@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Status Updated</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+    }
+    .container {
+      background: white;
+      padding: 40px 50px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      width: 400px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    h2 {
+      color: #4a148c;
+      margin-bottom: 30px;
+      font-weight: 700;
+      font-size: 28px;
+    }
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    a {
+      text-decoration: none;
+      color: #4a148c;
+      font-weight: 600;
+      font-size: 16px;
+      border: 2px solid #4a148c;
+      padding: 10px 20px;
+      border-radius: 10px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    a:hover {
+      background-color: #6a22c8;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Status Updated</h2>
+    <p>{{ message }}</p>
+    <a href="{{ url_for('admin_dashboard') }}">Back to Dashboard</a>
+  </div>
+</body>
+</html>

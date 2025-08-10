@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Application Submitted</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+  }
+  .container {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    max-width: 400px;
+    text-align: center;
+  }
+  h2 {
+    color: #4a148c;
+  }
+  p {
+    font-size: 18px;
+  }
+  a {
+    display: inline-block;
+    margin-top: 20px;
+    color: #764ba2;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h2>Application Submitted Successfully!</h2>
+    <p>Your application ID is: <strong>{{ app_id }}</strong></p>
+    <p>Estimated processing time: <strong>{{ est_days }} days</strong></p>
+    <a href="{{ url_for('customer_dashboard') }}">Back to Dashboard</a>
+  </div>
+</body>
+</html>

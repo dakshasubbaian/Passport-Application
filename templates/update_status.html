@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Update Application Status</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container {
+    background: white;
+    padding: 40px 50px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    width: 400px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  h2 {
+    color: #4a148c;
+    margin-bottom: 30px;
+    font-weight: 700;
+    font-size: 28px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #555;
+    text-align: left;
+  }
+
+  select {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1.5px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    margin-bottom: 25px;
+    transition: border-color 0.3s ease;
+  }
+
+  select:focus {
+    border-color: #6a22c8;
+  }
+
+  button {
+    background-color: #4a148c;
+    color: white;
+    border: none;
+    padding: 14px 0;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #6a22c8;
+  }
+
+  .back-link {
+    display: block;
+    margin-top: 20px;
+    color: #764ba2;
+    font-size: 15px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .back-link:hover {
+    color: #4a148c;
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h2>Update Application Status</h2>
+    <form method="post">
+      <label for="status">Select New Status</label>
+      <select id="status" name="status" required>
+        <option value="" disabled>Select status</option>
+        <option value="Pending" {% if current_status == 'Pending' %}selected{% endif %}>Pending</option>
+        <option value="Approved" {% if current_status == 'Approved' %}selected{% endif %}>Approved</option>
+        <option value="Rejected" {% if current_status == 'Rejected' %}selected{% endif %}>Rejected</option>
+        <option value="In Progress" {% if current_status == 'In Progress' %}selected{% endif %}>In Progress</option>
+        <!-- Add more statuses as needed -->
+      </select>
+      <button type="submit">Update Status</button>
+    </form>
+    <a href="{{ url_for('admin_dashboard') }}" class="back-link">Back to Dashboard</a>
+  </div>
+</body>
+</html>

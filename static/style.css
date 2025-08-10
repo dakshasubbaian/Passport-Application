@@ -1,0 +1,22 @@
+/* Remove margin from body and make it full height */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    display: flex;               /* Enable flexbox */
+    justify-content: center;     /* Center horizontally */
+    align-items: center;         /* Center vertically */
+}
+
+/* Your container - center horizontally + vertical */
+.center {
+    max-width: 600px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    /* Remove margin: auto; because flexbox is centering */
+    box-sizing: border-box;
+}
+

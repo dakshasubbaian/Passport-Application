@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Update Profile</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+  }
+  .container {
+    background: white;
+    padding: 40px 50px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    width: 400px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  h2 {
+    margin-bottom: 30px;
+    color: #4a148c;
+    font-weight: 700;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+  }
+  label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: block;
+    color: #555;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  select {
+    padding: 12px;
+    font-size: 16px;
+    border: 1.5px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.3s ease;
+  }
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="tel"]:focus,
+  input[type="date"]:focus,
+  select:focus {
+    border-color: #6a22c8;
+  }
+  input[readonly] {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+  }
+  .btn {
+    background-color: #4a148c;
+    color: white;
+    border: none;
+    padding: 14px 0;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+  }
+  .btn:hover {
+    background-color: #6a22c8;
+  }
+  a.link {
+    display: block;
+    margin-top: 20px;
+    color: #764ba2;
+    font-size: 15px;
+    text-decoration: none;
+    text-align: center;
+    transition: color 0.3s ease;
+  }
+  a.link:hover {
+    text-decoration: underline;
+    color: #4a148c;
+  }
+  ul.flash-messages {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 15px 0;
+    font-weight: 600;
+    text-align: left;
+  }
+  ul.flash-messages li {
+    color: red;
+  }
+  ul.flash-messages li.success {
+    color: green;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h2>Update Profile</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flash-messages">
+          {% for category, msg in messages %}
+            <li class="{{ category }}">{{ msg }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form method="post" novalidate>
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" value="{{ user.username }}" readonly />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" value="{{ user.email }}" placeholder="Enter your email" required />
+
+      <label for="address">Address</label>
+      <input type="text" id="address" name="address" value="{{ user.address }}" placeholder="Enter your address" required />
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" value="{{ user.phone }}" placeholder="Enter your phone number" pattern="[0-9]{10,15}" title="Enter valid phone number" required />
+
+      <label for="gender">Gender</label>
+      <select id="gender" name="gender" required>
+        <option value="" disabled {% if not user.gender %}selected{% endif %}>Select Gender</option>
+        <option value="Male" {% if user.gender == 'Male' %}selected{% endif %}>Male</option>
+        <option value="Female" {% if user.gender == 'Female' %}selected{% endif %}>Female</option>
+        <option value="Other" {% if user.gender == 'Other' %}selected{% endif %}>Other</option>
+      </select>
+
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" name="dob" value="{{ user.dob }}" required />
+
+      <button type="submit" class="btn">Update Profile</button>
+    </form>
+
+    <a href="{{ url_for('customer_dashboard') }}" class="link">Back to Dashboard</a>
+  </div>
+</body>
+</html>

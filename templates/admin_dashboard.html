@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Admin Dashboard</title>
+<style>
+  /* Reset & base */
+  html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    box-sizing: border-box;
+  }
+
+  .container {
+    background: white;
+    padding: 40px 50px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    max-width: 900px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  h2 {
+    margin-bottom: 30px;
+    color: #4a148c;
+    font-weight: 700;
+    font-size: 32px;
+    text-align: center;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 12px; /* space between rows */
+    font-size: 18px;
+  }
+
+  thead th {
+    background-color: #4a148c;
+    color: white;
+    font-weight: 700;
+    padding: 15px 20px;
+    text-align: left;
+    border-radius: 12px 12px 0 0;
+  }
+
+  tbody tr {
+    background-color: #f7f7f7;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease;
+  }
+
+  tbody tr:hover {
+    background-color: #e1d4f7;
+  }
+
+  tbody td {
+    padding: 15px 20px;
+    vertical-align: middle;
+  }
+
+  /* Updated styling for the Update Status button */
+  tbody td:last-child a {
+    display: inline-block;
+    background-color: #4a148c;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 8px rgba(74, 20, 140, 0.4);
+  }
+
+  tbody td:last-child a:hover {
+    background-color: #6a22c8;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(106, 34, 200, 0.6);
+  }
+
+  .logout-link {
+    margin-top: 30px;
+    display: block;
+    text-align: center;
+    color: #764ba2;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .logout-link:hover {
+    color: #4a148c;
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h2>Admin Dashboard</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Customer</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for app in applications %}
+        <tr>
+          <td>{{ app[0] }}</td>
+          <td>{{ app[1] }}</td>
+          <td>{{ app[2] }}</td>
+          <td>{{ app[3] }}</td>
+          <td>{{ app[4] }}</td>
+          <td><a href="{{ url_for('update_status', app_id=app[0]) }}">Update Status</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="{{ url_for('admin_logout') }}" class="logout-link">Logout</a>
+  </div>
+</body>
+</html>

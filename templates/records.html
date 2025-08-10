@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <title>All Applications</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h2>Submitted Applications</h2>
+    <table border="1" cellpadding="8" cellspacing="0">
+        <tr>
+            <th>ID</th><th>Name</th><th>DOB</th><th>Gender</th><th>Email</th><th>Phone</th><th>Address</th><th>Status</th><th>Actions</th>
+        </tr>
+        {% for app in applications %}
+        <tr>
+            <td>{{ app[0] }}</td>
+            <td>{{ app[1] }} {{ app[2] }}</td>
+            <td>{{ app[3] }}</td>
+            <td>{{ app[4] }}</td>
+            <td>{{ app[5] }}</td>
+            <td>{{ app[6] }}</td>
+            <td>{{ app[7] }}</td>
+            <td>{{ app[8] }}</td>
+            <td>
+                <a href="/update/{{ app[0] }}">Update</a> |
+                <a href="/delete/{{ app[0] }}" onclick="return confirm('Delete this record?');">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br><a href="/logout">Logout</a>
+</body>
+</html>

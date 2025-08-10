@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Check Application Status</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: #333;
+    }
+    .container {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 25px;
+      color: #4a148c;
+      font-weight: 700;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    input[type="text"] {
+      padding: 12px 15px;
+      font-size: 1rem;
+      border: 2px solid #764ba2;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.3s ease;
+      width: 100%;
+    }
+    input[type="text"]:focus {
+      border-color: #3f0d8c;
+      box-shadow: 0 0 5px #3f0d8c;
+    }
+    button {
+      background-color: #4a148c;
+      color: white;
+      padding: 14px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #6a22c8;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0 0 20px 0;
+      color: #d32f2f;
+      font-weight: 600;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: #764ba2;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .back-link:hover {
+      color: #4a148c;
+      text-decoration: underline;
+    }
+    .status-message {
+      background-color: #e8f0fe;
+      color: #1a237e;
+      padding: 15px;
+      border-radius: 12px;
+      font-weight: 700;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Check Application Status</h2>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for msg in messages %}
+            <li>{{ msg }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form method="post">
+      <input type="text" name="app_id" placeholder="Enter Application ID" required />
+      <button type="submit">Check Status</button>
+    </form>
+
+    {% if status %}
+      <div class="status-message">
+        Status for Application {{ app_id }}: {{ status }}
+      </div>
+    {% endif %}
+
+    <a href="{{ url_for('customer_dashboard') }}" class="back-link">← Back to Dashboard</a>
+  </div>
+</body>
+</html>
